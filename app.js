@@ -1,9 +1,9 @@
-`use strict`;
+'use strict';
 
 const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
 function random(min, max) {
-    return Math.round(Math.random() * (max - min)) + min;
+  return Math.round(Math.random() * (max - min)) + min;
 }
 
 const seattle = {
@@ -14,9 +14,9 @@ const seattle = {
   totalSales: 0,
   custPerHour: function () {
     for (let i = 0; i < hours.length; i++) {
-        let number = generateNumberBetween(this.minCust, this.maxCust);
-        console.log(number);
-        this.hourlyCust.push(number);
+      let number = generateNumberBetween(this.minCust, this.maxCust);
+      console.log(number);
+      this.hourlyCust.push(number);
     }
 
     return this.hourlyCust;
@@ -27,9 +27,9 @@ const seattle = {
     let sum = 0;
 
     for (let i = 0; i < hourlyCust.length; i++) {
-        let hourlySales = Math.round(hourlyCust[i] * this.avgCookie);
-        sum = sum + hourlySales;
-        result.push(hourlySales);
+      let hourlySales = Math.round(hourlyCust[i] * this.avgCookie);
+      sum = sum + hourlySales;
+      result.push(hourlySales);
     }
 
     this.totalSales = sum;
@@ -43,20 +43,20 @@ console.log(seattle);
 console.log(seattleCookiesPerHour);
 
 function salesList(sales) {
-    let seattleResults = document.getElementById('seattle-results');
+  let seattleResults = document.getElementById('seattle-results');
 
-    let listElement = document.createElement('ul');
-    seattleResults.appendChild(listElement);
+  let listElement = document.createElement('ul');
+  seattleResults.appendChild(listElement);
 
-    for (let i = 0; i < sales.length; i++) {
-        let listItemElement = document.createElement('li');
-        listItemElement.textContent = hours[i] + ': ' + sales[i] + ' cookies';
-        listElement.appendChild(listItemElement);
-    }
+  for (let i = 0; i < sales.length; i++) {
+    let listItemElement = document.createElement('li');
+    listItemElement.textContent = hours[i] + ': ' + sales[i] + ' cookies';
+    listElement.appendChild(listItemElement);
+  }
 
-    let totalElement = document.createElement('li');
-    totalElement.textContent = 'Total: ' + seattle.totalSales + ' cookies';
-    listElement.appendChild(totalElement);
+  let totalElement = document.createElement('li');
+  totalElement.textContent = 'Total: ' + seattle.totalSales + ' cookies';
+  listElement.appendChild(totalElement);
 }
 
 salesList(seattleCookiesPerHour);
