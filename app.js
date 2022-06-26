@@ -6,7 +6,7 @@ function random(min, max) {
   return Math.round(Math.random() * (max - min)) + min;
 }
 
-function store(city, minCust, maxCust, avgCookie) {
+function Store(city, minCust, maxCust, avgCookie) {
   this.city = city;
   this.minCust = minCust;
   this.maxCust = maxCust;
@@ -23,37 +23,40 @@ function store(city, minCust, maxCust, avgCookie) {
 
     return this.hourlyCust;
   };
+
+  this.cookiesPerHour = function (hourlyCust) {
+    let total = [];
+    let sum = 0;
+
+    for (let i = 0; i < hourlyCust.length; i++) {
+      let hourlySales = Math.round(hourlyCust[i] * this.avgCookie);
+      sum = sum + hourlySales;
+      this.result.push(hourlySales);
+    }
+
+    this.totalSales = sum;
+    return total;
+  };
 }
 
-store.prototype.cookiesPerHour = function (hourlyCust) {
-  let total = [];
-  let sum = 0;
-
-  for (let i = 0; i < hourlyCust.length; i++) {
-    let hourlySales = Math.round(hourlyCust[i] * this.avgCookie);
-    sum = sum + hourlySales;
-    this.result.push(hourlySales);
-  }
-
-  this.totalSales = sum;
-  return total;
-};
-
-let seattle = new store('seattle', 23, 65, 6.3);
-let tokyo = new store('Tokyo', 3, 24, 1.2);
-let dubai = new store('Dubai', 11, 38, 3.7);
-let paris = new store('Paris', 20, 38, 2.3);
-let lima = new store('Lima', 2, 16, 4.6);
+let seattle = new Store('Seattle', 23, 65, 6.3);
+let tokyo = new Store('Tokyo', 3, 24, 1.2);
+let dubai = new Store('Dubai', 11, 38, 3.7);
+let paris = new Store('Paris', 20, 38, 2.3);
+let lima = new Store('Lima', 2, 16, 4.6);
 
 function render(store) {
   let tableEl = document.getElementById('salmon-cookies');
   let tableRowEl = document.createElement('tr');
-  let nameEl = document.createElement('td');
+  let cityEl = document.createElement('td');
+  let totalEl = document.createElement('td');
 
   tableEl.appendChild(tableRowEl);
-  tableRowEl.appendChild(nameEl);
+  tableRowEl.appendChild(cityEl);
+  tableRowEl.appendChild(totalEl);
 
-  nameEl.textContent = store.city;
+  cityEl.textContent = store.city;
+  totalEl.textContent = store.totalSales;
 }
 
 render(seattle);
