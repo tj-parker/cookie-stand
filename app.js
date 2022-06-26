@@ -54,7 +54,13 @@ function render(store) {
   tableRowEl.appendChild(nameEl);
 
   nameEl.textContent = store.city;
+}
 
+render(seattle);
+render(tokyo);
+render(dubai);
+render(paris);
+render(lima);
 
 // seattle.custPerHour();
 // let seattleCookiesPerHour = seattle.cookiesPerHour(seattle.hourlyCust);
