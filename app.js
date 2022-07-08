@@ -1,7 +1,19 @@
 'use strict';
 
 let hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+let storeFormEl = document.getElementById('store-form');
 
+storeFormEl.addEventListener('submit', function(event) {
+  event.preventDefault();
+  let city = event.target.location.value;
+  let minCust = parseInt(event.target.min.value);
+  let maxCust = parseInt(event.target.max.value);
+  let avgCookiesPerCust = parseInt(event.target.avgCookies.value);
+
+  let store = new Store(city, minCust, maxCust, avgCookiesPerCust);
+  store.generateCookiesPerHour();
+  store.renderData();
+});
 function generateNumberBetween(min, max) {
   return Math.round(Math.random() * (max - min)) + min;
 }
@@ -24,24 +36,44 @@ Store.prototype.generateCookiesPerHour = function() {
     this.totalSales += salesAtHour;
   }
 };
+let tableEl = document.getElementById('sales-data');
+let headerRowEl = document.createElement('tr');
+let headerBlankEl = document.createElement('td');
+let headerTotalEl = document.createElement('td');
+
+headerBlankEl.textContent = '';
+tableEl.appendChild(headerRowEl);
+
+headerTotalEl.textContent = 'Total';
+
+headerRowEl.appendChild(headerBlankEl);
+
+for (let i = 0; i < hours.length; i++) {
+  let hoursEl = document.createElement('td');
+  let eachHour = hours[i].toString();
+  hoursEl.textContent = eachHour;
+  headerRowEl.appendChild(hoursEl);
+}
 
 Store.prototype.renderData = function() {
 
-  let tableEl = document.getElementById('sales-data');
   let rowEl = document.createElement('tr');
 
   let cityCell = document.createElement('td');
   cityCell.textContent = this.city;
-  rowEl.appendChild(cityCell);
-
-  for (let i = 0; i < this.hourlySales.length; i++) {
-    let cellEl = document.createElement('td');
-    cellEl.textcontent = this.hourlySales[i];
-    rowEl.appendChild(cellEl);
-  }
 
   let totalCell = document.createElement('td');
   totalCell.textContent = this.totalSales;
+
+  rowEl.appendChild(cityCell);
+
+  for (let i = 0; i < this.hourlySales.length; i++) {
+    let hourlyEl = document.createElement('td');
+    hourlyEl.textContent = this.hourlySales[i].toString();
+    rowEl.appendChild(hourlyEl);
+  }
+
+  headerRowEl.appendChild(headerTotalEl);
   rowEl.appendChild(totalCell);
 
   tableEl.appendChild(rowEl);

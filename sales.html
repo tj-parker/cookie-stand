@@ -13,13 +13,27 @@
     <table id="sales-data">
 
     </table>
-    <form id="store-form">
-        <input type="text" name="location">
-        <input type="text" name="min">
-        <input type="text" name="max">
-        <input type="text" name="avgCookies">
+    <div id="form">
+      <form id="store-form">
+        <p>Enter City: 
+          <input type="text" name="location">
+        </p>
+
+        <p>Enter Minimum Sales: 
+            <input type="text" name="min">
+        </p>
+        
+        <p>Enter Maximum Sales: 
+            <input type="text" name="max">
+        </p>
+
+        <p>Enter Average Sales per Customer: 
+            <input type="text" name="avgCookies">
+        </p>        
+        
         <button type="submit">Create Store</button>
-    </form>
+      </form>
+    </div>
     <script src="/app.js"></script>
 </body>
 </html>
