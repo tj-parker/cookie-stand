@@ -1,0 +1,46 @@
+h1 {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    font-size: 56px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    border-style: groove;
+    border-color: forestgreen;
+    border-width: 2px;
+}
+
+#sales-data {
+    background-color: bisque;
+
+}
+
+table {
+    border-style:double;
+    border-color:black;
+    border-width: 5px;
+    margin: auto;
+}
+
+body {
+    background-color: aqua;
+}
+
+tr:first-child {
+    font-weight: bold;
+}
+
+td:first-child {
+    font-weight: bold;
+}
+
+#store-form {
+    padding: 10px;
+    margin-top: 50px;
+    margin-left: 50px;
+}
